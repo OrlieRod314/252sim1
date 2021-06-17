@@ -10,7 +10,7 @@ public class Sim1_ADD {
 
 
 		for (int i = 0; i < 31; i++) {
-			if (i != 31)
+			if (i != 0)
 				colCarryIn[i].set(colCarryOut[i - 1].get());
 
 			//Result of addition
