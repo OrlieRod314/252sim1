@@ -10,14 +10,15 @@ public class Sim1_ADD {
 
 
 		for (int i = 31; i >= 0; i--) {
-			carryIn.set(carryOut.get());
+			if (i != 31)
+				colCarryIn[i].set(colCarryOut[i + 1].get());
 
 			//Result of addition
 			outXOR1.a.set(a[i].get());
 			outXOR1.b.set(b[i].get());
 			outXOR1.execute();
 
-			outXOR2.a.set(carryIn.get());
+			outXOR2.a.set(colCarryIn[i].get());
 			outXOR2.b.set(outXOR1.out.get());
 			outXOR2.execute();
 			
@@ -29,7 +30,7 @@ public class Sim1_ADD {
 			carryXOR1.execute();
 			
 			carryAND1.a.set(carryXOR1.out.get());
-			carryAND1.b.set(carryIn.get());
+			carryAND1.b.set(colCarryIn[i].get());
 			carryAND1.execute();
 			
 			carryAND2.a.set(a[i].get());
@@ -40,15 +41,16 @@ public class Sim1_ADD {
 			carryXOR2.b.set(carryAND1.out.get());
 			carryXOR2.execute();
 			
-			carryOut.set(carryXOR2.out.get());
+			colCarryOut[i].set(carryXOR2.out.get());
 		}
 
 		// If Carry in and Carry out for MSB column are different, then 
 		// overflow occurred. 
 		// Carry in/out can only differ if a and b are the same sign.
 		// Overflow can only occur if a and b are the same sign.
-		overflowXOR1.a.set(carryIn.get());
-		overflowXOR1.b.set(carryOut.get());
+		carryOut.set(colCarryOut[0].get());
+		overflowXOR1.a.set(colCarryIn[0].get());
+		overflowXOR1.b.set(colCarryOut[0].get());
 		overflowXOR1.execute();
 		overflow.set(overflowXOR1.out.get());
 	}
@@ -83,7 +85,8 @@ public class Sim1_ADD {
 	private Sim1_XOR overflowXOR1;
 	
 	//temp variables
-	private RussWire carryIn;
+	private RussWire colCarryOut[];
+	private RussWire colCarryIn[];
 
 	public Sim1_ADD()
 	{
@@ -127,8 +130,15 @@ public class Sim1_ADD {
 		overflowXOR1 = new Sim1_XOR();
 		
 		//temp variables
-		carryIn = new RussWire();
-		carryIn.set(false);
+		colCarryIn = new RussWire[32];
+		colCarryOut = new RussWire[32];
+		
+		for (int i = 0; i < 32; i++) {
+			colCarryIn[i] = new RussWire();
+			colCarryOut[i] = new RussWire();
+		}
+		
+		colCarryIn[0].set(false);
 		
 	}
 }
