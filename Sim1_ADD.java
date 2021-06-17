@@ -9,9 +9,9 @@ public class Sim1_ADD {
 	public void execute() {
 
 
-		for (int i = 31; i >= 0; i--) {
+		for (int i = 0; i < 31; i++) {
 			if (i != 31)
-				colCarryIn[i].set(colCarryOut[i + 1].get());
+				colCarryIn[i].set(colCarryOut[i - 1].get());
 
 			//Result of addition
 			outXOR1[i].a.set(a[i].get());
@@ -48,9 +48,9 @@ public class Sim1_ADD {
 		// overflow occurred. 
 		// Carry in/out can only differ if a and b are the same sign.
 		// Overflow can only occur if a and b are the same sign.
-		carryOut.set(colCarryOut[0].get());
-		overflowXOR1.a.set(colCarryIn[0].get());
-		overflowXOR1.b.set(colCarryOut[0].get());
+		carryOut.set(colCarryOut[31].get());
+		overflowXOR1.a.set(colCarryIn[31].get());
+		overflowXOR1.b.set(colCarryOut[31].get());
 		overflowXOR1.execute();
 		overflow.set(overflowXOR1.out.get());
 	}
@@ -149,7 +149,7 @@ public class Sim1_ADD {
 			colCarryOut[i] = new RussWire();
 		}
 		
-		colCarryIn[31].set(false);
+		colCarryIn[0].set(false);
 	}
 }
 
