@@ -14,34 +14,34 @@ public class Sim1_ADD {
 				colCarryIn[i].set(colCarryOut[i + 1].get());
 
 			//Result of addition
-			outXOR1.a.set(a[i].get());
-			outXOR1.b.set(b[i].get());
-			outXOR1.execute();
+			outXOR1[i].a.set(a[i].get());
+			outXOR1[i].b.set(b[i].get());
+			outXOR1[i].execute();
 
-			outXOR2.a.set(colCarryIn[i].get());
-			outXOR2.b.set(outXOR1.out.get());
-			outXOR2.execute();
+			outXOR2[i].a.set(colCarryIn[i].get());
+			outXOR2[i].b.set(outXOR1[i].out.get());
+			outXOR2[i].execute();
 			
-			sum[i].set(outXOR2.out.get());
+			sum[i].set(outXOR2[i].out.get());
 			
 			//Carry out
-			carryXOR1.a.set(a[i].get());
-			carryXOR1.b.set(b[i].get());
-			carryXOR1.execute();
+			carryXOR1[i].a.set(a[i].get());
+			carryXOR1[i].b.set(b[i].get());
+			carryXOR1[i].execute();
 			
-			carryAND1.a.set(carryXOR1.out.get());
-			carryAND1.b.set(colCarryIn[i].get());
-			carryAND1.execute();
+			carryAND1[i].a.set(carryXOR1[i].out.get());
+			carryAND1[i].b.set(colCarryIn[i].get());
+			carryAND1[i].execute();
 			
-			carryAND2.a.set(a[i].get());
-			carryAND2.b.set(b[i].get());
-			carryAND2.execute();
+			carryAND2[i].a.set(a[i].get());
+			carryAND2[i].b.set(b[i].get());
+			carryAND2[i].execute();
 			
-			carryXOR2.a.set(carryAND2.out.get());
-			carryXOR2.b.set(carryAND1.out.get());
-			carryXOR2.execute();
+			carryXOR2[i].a.set(carryAND2[i].out.get());
+			carryXOR2[i].b.set(carryAND1[i].out.get());
+			carryXOR2[i].execute();
 			
-			colCarryOut[i].set(carryXOR2.out.get());
+			colCarryOut[i].set(carryXOR2[i].out.get());
 		}
 
 		// If Carry in and Carry out for MSB column are different, then 
@@ -72,14 +72,14 @@ public class Sim1_ADD {
 	// logic gates
 	
 	// out gates
-	private Sim1_XOR outXOR1;
-	private Sim1_XOR outXOR2;
+	private Sim1_XOR outXOR1[];
+	private Sim1_XOR outXOR2[];
 	
 	// carry gates
-	private Sim1_XOR carryXOR1;
-	private Sim1_XOR carryXOR2;
-	private Sim1_AND carryAND1;
-	private Sim1_AND carryAND2;
+	private Sim1_XOR carryXOR1[];
+	private Sim1_XOR carryXOR2[];
+	private Sim1_AND carryAND1[];
+	private Sim1_AND carryAND2[];
 	
 	//overflow gates
 	private Sim1_XOR overflowXOR1;
@@ -117,14 +117,14 @@ public class Sim1_ADD {
 		// logic gates
 		
 		// out gates
-		outXOR1 = new Sim1_XOR();
-		outXOR2 = new Sim1_XOR();
+		outXOR1 = new Sim1_XOR[32];
+		outXOR2 = new Sim1_XOR[32];
 		
 		// carry gates
-		carryXOR1 = new Sim1_XOR();
-		carryXOR2 = new Sim1_XOR();
-		carryAND1 = new Sim1_AND();
-		carryAND2 = new Sim1_AND();
+		carryXOR1 = new Sim1_XOR[32];
+		carryXOR2 = new Sim1_XOR[32];
+		carryAND1 = new Sim1_AND[32];
+		carryAND2 = new Sim1_AND[32];
 		
 		//overflow gates
 		overflowXOR1 = new Sim1_XOR();
