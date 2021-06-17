@@ -23,7 +23,7 @@ void execute_add(Sim1Data *obj)
             obj->sum |= (0x1 << i);
 
         int XOR1 = (tempa ^ tempb);
-        int AND1 = (XOR1 & carry);
+        int AND1 = (XOR1 & carryIn);
         int AND2 = (tempa & tempb);
         carryOut = (AND1 ^ AND2);
 	}
