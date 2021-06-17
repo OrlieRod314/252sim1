@@ -18,7 +18,7 @@ void execute_add(Sim1Data *obj)
         int tempa = (obj->a >> i) & 0x1;
         int tempb = (obj->b >> i) & 0x1;
         if (obj->isSubtraction == 1)
-            tempb = ~tempb;
+            tempb = ~tempb & 0x1;
         if (carryIn ^ (tempa ^ tempb) == 1)
             obj->sum |= (0x1 << i);
 
