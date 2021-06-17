@@ -8,9 +8,8 @@ public class Sim1_ADD {
 
 	public void execute() {
 
-		carryIn.set(false);
 
-		for (int i = 31; i >= 0; i++) {
+		for (int i = 31; i >= 0; i--) {
 			carryIn.set(carryOut.get());
 
 			//Result of addition
@@ -129,6 +128,7 @@ public class Sim1_ADD {
 		
 		//temp variables
 		carryIn = new RussWire();
+		carryIn.set(false);
 		
 	}
 }
