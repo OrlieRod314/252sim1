@@ -20,7 +20,7 @@ void execute_add(Sim1Data *obj)
         if (obj->isSubtraction == 1)
             tempb = ~tempb;
         if (carryIn ^ (tempa ^ tempb) == 1)
-            obj->sum |= (0x80000000 >> i);
+            obj->sum |= (0x1 >> i);
 
         int XOR1 = (tempa ^ tempb);
         int AND1 = (XOR1 & carryIn);
