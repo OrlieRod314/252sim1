@@ -150,8 +150,7 @@ public class Sim1_ADD {
 			colCarryOut[i] = new RussWire();
 		}
 		
-		colCarryIn[0].set(false);
-		
+		colCarryIn[31].set(false);
 	}
 }
 
