@@ -109,6 +109,7 @@ public class Sim1_ADD {
 		}
 
 		carryOut = new RussWire();
+		carryOut.set(false);
 		overflow = new RussWire();
 		
 		// logic gates
