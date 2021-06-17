@@ -4,7 +4,6 @@
  */
 
 public class Sim1_NOT {
-	
 	public void execute() {
 		out.set(!in.get());
 	}

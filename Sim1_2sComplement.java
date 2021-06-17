@@ -3,27 +3,25 @@
  * Author: Orlando Rodriguez
  */
 
-public class Sim1_2sComplement
-{
-	public void execute()
-	{
-		// TODO: fill this in!
+public class Sim1_2sComplement {
+	public void execute() {
 		//
 		// REMEMBER: You may call execute() on sub-objects here, and
 		//           copy values around - but you MUST NOT create
 		//           objects while inside this function.
+		
+		// Gets 1sComplement for each bit
 		for (int i = 0; i < 31; i++) {
 			NOTGates[i].in.set(in[i].get());
 			NOTGates[i].execute();
 			out[i].set(NOTGates[i].out.get());
 		}
 		
+		// Adds one
 		ADDOne.a = out;
 		ADDOne.execute();
 		out = ADDOne.sum;
 	}
-
-
 
 	// you shouldn't change these standard variables...
 	public RussWire[] in;
@@ -39,8 +37,7 @@ public class Sim1_2sComplement
 	private Sim1_ADD ADDOne;
 
 
-	public Sim1_2sComplement()
-	{
+	public Sim1_2sComplement() {
 		// TODO: this is where you create the objects that
 		//       you declared up above.
 		in = new RussWire[32];
@@ -49,8 +46,7 @@ public class Sim1_2sComplement
 		ADDOne = new Sim1_ADD();
 		for (RussWire wire : ADDOne.b)
 			wire.set(false);
-		ADDOne.b[31].set(true);
-
+		ADDOne.b[31].set(true); // Set up for adding one
 	}
 }
 

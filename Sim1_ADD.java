@@ -5,10 +5,7 @@
  */
 
 public class Sim1_ADD {
-
 	public void execute() {
-
-
 		for (int i = 0; i < 32; i++) {
 			if (i != 0)
 				colCarryIn[i].set(colCarryOut[i - 1].get());
@@ -44,10 +41,10 @@ public class Sim1_ADD {
 			colCarryOut[i].set(carryXOR2[i].out.get());
 		}
 
+		// Overflow can only occur if a and b are the same sign.
+		// Carry in/out can only differ if a and b are the same sign.
 		// If Carry in and Carry out for MSB column are different, then 
 		// overflow occurred. 
-		// Carry in/out can only differ if a and b are the same sign.
-		// Overflow can only occur if a and b are the same sign.
 		carryOut.set(colCarryOut[31].get());
 		overflowXOR1.a.set(colCarryIn[31].get());
 		overflowXOR1.b.set(colCarryOut[31].get());

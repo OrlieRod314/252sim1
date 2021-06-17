@@ -4,18 +4,17 @@
  * Author: Orlando Rodriguez
  */
 
-public class Sim1_SUB
-{
-	public void execute()
-	{
-		// TODO: fill this in!
-		//
+public class Sim1_SUB {
+	public void execute() {
 		// REMEMBER: You may call execute() on sub-objects here, and
 		//           copy values around - but you MUST NOT create
 		//           objects while inside this function.
+		
+		// Find two's complement of b
 		inverter.in = b;
 		inverter.execute();
 		
+		// Addition of a and -b
 		adder.a = a;
 		adder.b = inverter.out;
 		adder.execute();
@@ -37,14 +36,10 @@ public class Sim1_SUB
 	// --------------------
 	// But you should add some *MORE* variables here.
 	// --------------------
-	// TODO: fill this in
 	private Sim1_2sComplement inverter;
 	private Sim1_ADD adder;
 
-
-
-	public Sim1_SUB()
-	{
+	public Sim1_SUB() {
 		a = new RussWire[32];
 		b = new RussWire[32];
 		inverter = new Sim1_2sComplement();

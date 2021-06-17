@@ -4,7 +4,6 @@
  */
 
 public class Sim1_OR {
-
 	public void execute() {
 		out.set(a.get() || b.get());
 	}
