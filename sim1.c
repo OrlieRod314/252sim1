@@ -10,8 +10,8 @@ void execute_add(Sim1Data *obj)
 	int carryIn = 0;
 	int carryOut = obj->isSubtraction;
 
-	obj->aNonNeg = ~((obj->a >> 31) & 0x1);
-	obj->bNonNeg = ~((obj->b >> 31) & 0x1);
+	obj->aNonNeg = ~((obj->a >> 31) & 0x1) & 0x1;
+	obj->bNonNeg = ~((obj->b >> 31) & 0x1) & 0x1;
 
 	for (int i = 0; i < 32; i++) {
         carryIn = carryOut;
@@ -29,6 +29,6 @@ void execute_add(Sim1Data *obj)
 	}
 
     obj->carryOut = carryOut;
-    obj->sumNonNeg = ~((obj->sum >> 31) & 0x1);
+    obj->sumNonNeg = ~((obj->sum >> 31) & 0x1) & 0x1;
     obj->overflow = (carryIn ^ carryOut);
 }
