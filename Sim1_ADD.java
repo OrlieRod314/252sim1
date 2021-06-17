@@ -129,6 +129,18 @@ public class Sim1_ADD {
 		//overflow gates
 		overflowXOR1 = new Sim1_XOR();
 		
+		for (int i = 0; i < 32; i++) {
+			// out gates
+			outXOR1[i] = new Sim1_XOR();
+			outXOR2[i] = new Sim1_XOR();
+			
+			// carry gates
+			carryXOR1[i] = new Sim1_XOR();
+			carryXOR2[i] = new Sim1_XOR();
+			carryAND1[i] = new Sim1_AND();
+			carryAND2[i] = new Sim1_AND();
+		}
+		
 		//temp variables
 		colCarryIn = new RussWire[32];
 		colCarryOut = new RussWire[32];
