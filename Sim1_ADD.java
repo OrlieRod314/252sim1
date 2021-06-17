@@ -9,7 +9,7 @@ public class Sim1_ADD {
 	public void execute() {
 
 
-		for (int i = 0; i < 31; i++) {
+		for (int i = 0; i < 32; i++) {
 			if (i != 0)
 				colCarryIn[i].set(colCarryOut[i - 1].get());
 
